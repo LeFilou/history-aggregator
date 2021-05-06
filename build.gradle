@@ -21,20 +21,26 @@ repositories {
 
 ext {
     set('testcontainersVersion', "1.15.3")
+    set('cucumberVersion', "6.8.1")
+    set('commonsLangVersion', "3.11")
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
-    implementation 'org.springframework.boot:spring-boot-starter-data-cassandra-reactive'
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
-    testImplementation 'org.testcontainers:cassandra'
+    testImplementation 'org.testcontainers:postgresql'
     testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-spring:${cucumberVersion}"
+    testImplementation 'io.rest-assured:spring-mock-mvc'
 }
 
 dependencyManagement {
