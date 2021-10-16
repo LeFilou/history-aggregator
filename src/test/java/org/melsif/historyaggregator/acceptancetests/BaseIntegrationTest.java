@@ -1,5 +1,7 @@
-package org.melsif.historyaggregator.util;
+package org.melsif.historyaggregator.acceptancetests;
 
+import io.restassured.RestAssured;
+import org.junit.BeforeClass;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -39,5 +41,11 @@ public abstract class BaseIntegrationTest {
             MapPropertySource testcontainers = new MapPropertySource("testcontainers", createConnectionConfiguration());
             environment.getPropertySources().addFirst(testcontainers);
         }
+    }
+
+    @BeforeClass
+    public static void setup() {
+        RestAssured.port = 8080;
+        RestAssured.baseURI = "http://localhost";
     }
 }

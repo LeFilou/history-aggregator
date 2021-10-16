@@ -1,0 +1,12 @@
+# Database config
+spring:
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
